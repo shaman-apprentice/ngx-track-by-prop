@@ -1,0 +1,32 @@
+<div>
+  <p>
+    Play around with ids below.
+    You will notice, that the usage of <em>trackByProp</em> (to the right)
+    will reduce the elements created (each element has a fade in animation at creation).
+  </p>
+  <p>
+    Comma separated list of new ids to render: (Update for example to "1,2,3")
+    <br />
+    <input #idsInput type="text" /> 
+    <button (click)="updateIds(idsInput.value); idsInput.value =''">Update</button>
+  </p>
+</div>
+
+
+<div style="display: flex; gap: 8px;">
+  <div>
+    <demo-item
+      *ngFor="let item of ids"
+      [id]="item.id"
+      [prefix]="'Without trackByProp'"
+    ></demo-item>
+  </div>
+  <div style="border: 1px solid black"></div>
+  <div>
+    <demo-item
+      *ngFor="let item of ids; trackByProp: 'id'"
+      [id]="item.id"
+      [prefix]="'With trackByProp'"
+    ></demo-item>
+  </div>
+</div>
